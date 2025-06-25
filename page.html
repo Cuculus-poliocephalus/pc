@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+        <meta http-equiv="Content-Language" content="ja" />
+        <meta http-equiv="Content-Script-Type" content="text/javascript" />
+        <meta http-equiv="Content-Style-Type" content="text/css" />
+        <meta http-equiv="imagetoolbar" content="no" />
+        <link rel="stylesheet" type="text/css" href="/content/lib/global.css" />
+    　　<title>自己紹介 page1</title>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(function(){
+                // クリックで、オーバーレイ、ダイアログボックス、ボタンを非表示
+                $('a.btn-ok, #dialog-overlay, #dialog-box').click(function (){
+                    $('#dialog-overlay, #dialog-box').hide();
+                    return false;
+                });
+                // ウィンドウがリサイズされたら、ダイアログボックスをセンタリング表示する関数を呼ぶ
+                $(window).resize(function () {
+                    // ダイアログボックスが表示されている場合のみ実行
+                    if (!$('#dialog-box').is(':hidden')) popup();
+                });
+                // ダイアログをポップアップする関数
+            });
+            function popup(message){
+                // スクリーンの幅と高さを取得
+                var maskHeight = $(document).height();
+                var maskWidth = $(window).width();
+                // 垂直方法および水平方向にセンタリング表示する位置を計算
+//                var dialogTop =  (maskHeight/3) - ($('#dialog-box').height());  
+                var dialogTop =  ($(window).height()/2) - ($('#dialog-box').height());  
+                var dialogLeft = (maskWidth/2) - ($('#dialog-box').width()/2); 
+                // オーバーレイとダイアログボックスを表示
+                $('#dialog-overlay').css({height:maskHeight, width:maskWidth}).show();
+                $('#dialog-box').css({top:dialogTop, left:dialogLeft}).show();
+                // ダイアログボックス内にメッセージを表示
+                $('#dialog-message').html(message);
+            }
+        </script>
+        <!-- CSS -->
+        <style type="text/css">
+            #dialog-overlay {
+                /* set it to fill the whil screen */
+                width:100%;height:100%;
+                /* transparency for different browsers */
+                filter:alpha(opacity=50);
+                -moz-opacity:0.5;
+                -khtml-opacity: 0.5;
+                opacity: 0.5;
+                background:#000;
+                /* make sure it appear behind the dialog box but above everything else */
+                position:absolute;
+                top:0;left:0;
+                z-index:3000;
+                /* hide it by default */
+                display:none;
+            }
+            #dialog-box {
+                /* css3 drop shadow */
+                -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+                -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+                /* css3 border radius */
+                -moz-border-radius: 5px;
+                -webkit-border-radius: 5px;
+                background:#eee;
+                /* styling of the dialog box, i have a fixed dimension for this demo */ 
+                width:328px;
+                /* make sure it has the highest z-index */
+                position:absolute;
+                z-index:5000;
+                /* hide it by default */
+                display:none;
+            }
+            #dialog-box .dialog-content {
+                /* style the content */
+                text-align:left;
+                margin:13px; padding:10px;
+                color:#666;
+                font-family:arial;
+                font-size:11px;
+            }
+            a.button {
+                /* styles for button */
+                margin:10px auto 0 auto; padding: 5px 10px 6px;
+                text-align:center;
+                display: block;
+                width:50px;
+                color: #fff;
+                text-decoration: none;
+                font-weight: bold;
+                line-height: 1;
+                /* button color */
+                background-color: #e33100;
+                /* css3 implementation :) */
+                /* rounded corner */
+                -moz-border-radius: 5px;
+                -webkit-border-radius: 5px;
+                /* drop shadow */
+                -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+                -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+                /* text shaow */
+                text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+                border-bottom: 1px solid rgba(0,0,0,0.25);
+                position: relative;
+                cursor: pointer;
+            }
+            a.button:hover {
+                background-color: #c33100;
+            }
+            /* extra styling */
+            #dialog-box .dialog-content p {
+                font-weight:700;margin:0;
+            }
+            #dialog-box .dialog-content ul {
+                margin:10px 0 10px 20px;
+                padding:0;
+                height:50px;
+            }
+        </style>
+        <style>
+            body {
+                background: #FFFFCC;
+                background-color: #000;
+                background-position: center;
+                cursor: url(mikuka-soru.png), text;
+                }
+            h1 {
+                margin:  0 auto;
+                border: 1px solid #000;
+                border-radius: 10px;
+                width:700px;
+                height: 70px;
+                background-color: #AAFFFF;
+                padding: 0 auto;
+                text-align: center;
+                }
+            details {
+                cursor: url(mikuka-soru2.png), text;
+                margin: 10px 100px 10px 45px ;
+                border: 3px solid #FFF;
+                border-radius: 10px;
+                width:680px;
+                background-color: gray;
+                padding:10px 30px 10px 30px;
+                color: white;
+                font-weight: bold;
+                }
+            a {
+                cursor: url(mikuka-soru2.png), text;
+                }
+            /*div*/
+            .backcenter {
+background-color: #aff6ff;
+background-image: linear-gradient(315deg, #aff6ff 0%, #73aaff 60%, #663bff 100%);
+}
+            /*H1*/
+            .h1 {
+                /*background*/
+  height: 100px;
+  width: 90%;
+background-color: #000066;
+background-image: linear-gradient(300deg, #000066 20%, #54b6bb 35%, #000033 50%, #000000 100%);
+
+                /*text shadow*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  color: #fffffd;
+  font-size: 50px;
+  text-shadow: 0px 0px 10px rgba(0, 246, 253, 1);
+  font-weight: bold;
+}
+/*buttan*/
+            *,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+.btn,
+a.btn,
+button.btn {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.5rem;
+}
+
+/*背景*/
+.btn-wrap {
+  margin: 20px;
+}
+
+a.btn-switch {
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 100vh;
+  background: #fbfbfc;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(#fbfbfc),
+    to(#dcddde)
+  );
+  background: -webkit-linear-gradient(top, #fbfbfc 0%, #dcddde 100%);
+  background: linear-gradient(180deg, #fbfbfc 0%, #dcddde 100%);
+  -webkit-box-shadow: -1px -5px 6px rgba(0, 0, 0, 0.2), 3px 3px 5px white,
+    0 10px 10px rgba(0, 0, 0, 0.1), inset 0 -4px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: -1px -5px 6px rgba(0, 0, 0, 0.2), 3px 3px 5px white,
+    0 10px 10px rgba(0, 0, 0, 0.1), inset 0 -4px 5px rgba(0, 0, 0, 0.1);
+}
+
+a.btn-switch span {
+  display: inline-block;
+
+  -webkit-transition: all 0.3s;
+
+  transition: all 0.3s;
+}
+
+a.btn-switch:hover {
+  -webkit-box-shadow: -1px -5px 6px rgba(0, 0, 0, 0.2), 3px 3px 5px white,
+    0 10px 10px rgba(0, 0, 0, 0.1), inset 0 -4px 5px rgba(0, 0, 0, 0.1),
+    inset 0 3px 3px rgba(0, 0, 0, 0.18);
+  box-shadow: -1px -5px 6px rgba(0, 0, 0, 0.2), 3px 3px 5px white,
+    0 10px 10px rgba(0, 0, 0, 0.1), inset 0 -4px 5px rgba(0, 0, 0, 0.1),
+    inset 0 3px 3px rgba(0, 0, 0, 0.18);
+}
+
+a.btn-switch:hover span {
+  -webkit-transform: scale(0.96);
+  transform: scale(0.96);
+}
+        </style>
+    </head>
+    <body>
+        <div class="backcenter" style="background-color: #BAD3FF; border: 0px solid white; width:800px; margin: 0 auto; padding:10px 0px 10px 30px; box-shadow: 0px 0px 50px 5px #444; border-radius: 20px; height: 900px; overflow: hidden scroll">
+        <h1 class="h1" id="start"><font size=7 color=#FFF>自己紹介</font><font size=2>　</font><a href="file:///media/removable/USB%20Drive/Program/%E8%87%AA%E5%B7%B1%E7%B4%B9%E4%BB%8B/kansen.html"><img id="gazou" src="miku.jpeg" width="90px" style="border: 3px solid black; border-radius: 50px;"></a></h1>
+            <br>
+            <font size=1 style="text-align: center;">　　　　　↑この配色クソダサいwww</font>
+            <p style="text-align: center; color: #FFF"><font size=5><b>Q&A方式で答えて行くｿﾞ</b></font></p>
+       <!--Q&A-->
+        <details>
+            <summary>
+            <img src="Q.png" alt="Q" width="30" height="30" style="padding: 0 auto">
+                <font size=5>　名前は？</font>
+                <font size=1 style="color: #DDDDDD; text-align: center;">name:ワイ</font>
+            </summary>
+            <a><img src="A.png" alt="A" width="40" height="40" style="padding: 0 auto"></a>
+            <!--此処にA-->
+            <font size=6><ruby><rb>山内結仁<rt>やまうちゆうと</ruby></font>
+            <font size=6>です。</font>
+            <br>
+            <font size=1>結仁っていう漢字が変換で出てこないので、<em>ケツジン</em>って打って変換しています。</font>
+        </details>
+      <!--Q&A-->
+       <details> 
+　　　　　<summary>
+          <img src="Q.png" alt="Q" width="30" height="30" style="padding: 0 auto">
+         <font size=5>　クラスは?</font>
+     <font size=1 style="color: #DDDDDD; text-align: center;">name:ワイ</font>
+     </summary>
+           <img src="A.png" alt="A" width="40" height="40" style="padding: 0 auto">
+           <font size=6">　2年1組31番だす。</font>
+           <br>
+           <font size=3>1組率がめっちゃ高いです。小1,小2,小5,小6,中1,そして今年も1組なんだよな</font>
+           <br>
+           <font size=1>ちなみに小3は4組、小4は3組。</font>
+       </details>
+            <!--Q&A-->
+        <details> 
+　　　　　<summary>
+             <img src="Q.png" alt="Q" width="30" height="30" style="padding: 0 auto">
+     　　    <font size=5>性別は？</font>
+             <font size=1 style="color: #DDDDDD; text-align: center;">name:ソラッチ</font>
+          </summary>
+          <img src="A.png" alt="A" width="40" height="40" style="padding: 0 auto">
+　　　　　<font size=6>どっからどう見ても...</font>
+           <br>
+            <img src="otoko.png" alt="otokodaro">
+           <font size=3></font>
+        </details>
+            <!--Q&A-->
+       <details> 
+　　　　　<summary>
+          <img src="Q.png" alt="Q" width="30" height="30" style="padding: 0 auto">
+     　　 <font size=5>趣味は？</font>
+         <font size=1 style="color: #DDDDDD; text-align: center;">name:ゆうき</font>
+     </summary>
+          <img src="A.png" alt="A" width="40" height="40" style="padding: 0 auto">
+　　　　　<font size=6>アニメ・ボカロ・ゲームの3つ</font>
+           <br>
+           <font size=3>どれが好きかは後々いうぜ。</font>
+        </details>
+            <!--Q&A-->
+        <details> 
+　　　　　<summary>
+             <img src="Q.png" alt="Q" width="30" height="30" style="padding: 0 auto">
+     　　    <font size=5>特技は？</font>
+             <font size=1 style="color: #DDDDDD; text-align: center;">name:アンチマンガン</font>
+          </summary>
+          <img src="A.png" alt="A" width="40" height="40" style="padding: 0 auto">
+　　　　　<font size=5>プログラミングとクソコラづくり</font>
+           <br>
+            <font size=1>　　　　　吉澤翼(当時 10歳)</font>
+            <br>
+            <img src="tubasa.png" alt="kusokora" width="600px">
+           <font size=3></font>
+        </details>
+        <!--Q&A-->
+       <details> 
+　　　　　<summary>
+          <img src="Q.png" alt="Q" width="30" height="30" style="padding: 0 auto">
+         <font size=5>　好きなゲームは？</font>
+    　　  <font size=1 style="color: #DDDDDD; text-align: center;">name:腹部</font>
+     </summary>
+          <img src="A.png" alt="A" width="40" height="40" style="padding: 0 auto">
+　　　　　<font size=6>プロセカとスマブラやね。</font>　
+           <img src="puse.jpeg" alt="puroseka">
+           <img src="sumabura.jpeg" alt="sumabura">
+        </details>
+        <!--Q&A-->
+       <details> 
+　　　　　<summary>
+          <img src="Q.png" alt="Q" width="30" height="30" style="padding: 0 auto">
+     　　 <font size=5>好きな曲は？</font>
+         <font size=1 style="color: #DDDDDD; text-align: center;">name:腹部</font>
+     </summary>
+          <img src="A.png" alt="A" width="40" height="40" style="padding: 0 auto">
+　　　　　<font size=6>ボカロ全般好き</font>
+           <br>
+           <font size=3>最近はビバハピ、SAN値直葬、初音ミクの暴走、BLUE BACKとかを聞いてる。</font>
+           <br>
+           <font size=1>わかってると思うけどミクさん推しです。</font>
+           <br>
+           <a href="https://www.youtube.com/watch?v=WiUjG9fF3zw"><img src="viva.jpg" alt="vivahapi" width="300px"></a>
+           <a href="https://www.youtube.com/watch?v=l36yKc43_9o"><img src="sanchi.png" alt="sanchi" width="300px"></a>
+           <br>
+           <a href="https://x.gd/kc8rc"><img src="bousou.jpg" alt="bousou" width="300px"></a>
+           <a href="https://x.gd/Dlxbg"><img src="BLUE.jpg" alt="blue" width="300px"></a>
+        </details>
+            <!--Q&A-->
+       <details> 
+　　　　　<summary>
+          <img src="Q.png" alt="Q" width="30" height="30" style="padding: 0 auto">
+     　　 <font size=5>好きなアニメは？</font>
+         <font size=1 style="color: #DDDDDD; text-align: center;">name:奈路谷めろん</font>
+     </summary>
+          <img src="A.png" alt="A" width="40" height="40" style="padding: 0 auto">
+　　　　　<font size=5>「ハッピーシュガーライフ」、「がっこうぐらし!」、「魔法少女サイト」、「ロウきゅーぶ！」、「ステラのまほう」、「のんのんびより」、「らき☆すた」、「男女の友情は成立する? (いや、 しないっ!!)」とかかな。</font>
+           <br>
+           <font size=3>ステラのまほうの主人公が入部する部活は</font>
+           <br>
+           <font size=3>S(死んだ魚の目)N(日照不足)S(シャトルラン)部</font>
+           <br>
+           <img src="satou.jpeg" alt="hapisyuga" width="200px">
+           <img src="gakkou.jpg" alt="gakkougurasi" width="200px">
+           <img src="mahousyoujo.jpg" alt="mahousyoujo" width="200px">
+           <br>
+           <img src="roukyuu.webp" alt="roukyuu" width="200px">
+           <img src="sutera.png" alt="suteranomahou" width="200px">
+           <img src="nonnon.jpeg" alt="nonnonbiyori" width="200px">
+           <br>
+           <img src="rakisuta.jpeg" alt="rakisuta" width="200px">
+           <img src="danjoru.webp" alt="danjoru" width="200px">
+           <img src="rikoriko.jpeg" alt="rikoriko" width="200px">
+        </details>
+            <!--Q&A-->
+       <details> 
+　　　　　<summary>
+          <img src="Q.png" alt="Q" width="30" height="30" style="padding: 0 auto">
+     　　 <font size=5>好きなyoutuberは？</font>
+         <font size=1 style="color: #DDDDDD; text-align: center;">name:奈路谷めろん</font>
+     </summary>
+          <img src="A.png" alt="A" width="40" height="40" style="padding: 0 auto">
+　　　　　<font size=5>最近は、プロセカ公式チャンネルとか、ハヤトの野望とか、2chまとめを見てるで。</font>
+           <br>
+           <font size=3>2chまとめは「【2ch面白スレ解説】グッバイイッチ」を見てるで。</font>
+           <br>
+           <a href="https://www.youtube.com/channel/UCdMGYXL38w6htx6Yf9YJa-w"><img src="puroseka.jpg" alt="purosekakousiki" width="200px"></a>
+           <a href="https://x.gd/wF4gV"><img src="hayayabo.jpg" alt="hayayabo" width="200px"></a>
+           <a href="https://x.gd/ibAfB8"><img src="itti.jpg" alt="gubbaiitti" width="200px"></a>
+        </details>
+            <!--Q&A-->
+       <details> 
+　　　　　<summary>
+          <img src="Q.png" alt="Q" width="30" height="30" style="padding: 0 auto">
+     　　 <font size=5>好きな漫画教えてクレメンス</font>
+         <font size=1 style="color: #DDDDDD; text-align: center;">name:肋骨折れた</font>
+     </summary>
+          <img src="A.png" alt="A" width="40" height="40" style="padding: 0 auto">
+　　　　　<font size=6>金色のガッシュ！！</font>
+           <br>
+           <font size=3>24年前の漫画。最近2が出て嬉い。あと肋骨ダイジョブそ？</font>
+           <img src="gasshu1.jpg" alt="gassyu" width="300px">
+           <img src="gasshu2.jpg" alt="gassyu" width="300px">
+        </details>
+            <!--Q&A-->
+        <details> 
+　　　　　<summary>
+             <img src="Q.png" alt="Q" width="30" height="30" style="padding: 0 auto">
+     　　    <font size=5>好きな鉱石は？</font>
+             <font size=1 style="color: #DDDDDD; text-align: center;">name:匿名カバ</font>
+          </summary>
+          <img src="A.png" alt="A" width="40" height="40" style="padding: 0 auto">
+　　　　　<font size=6>よくわからん</font>
+           <br>
+           <font size=3>興味ない</font>
+        </details>
+            <!--Q&A-->
+       <details> 
+　　　　　<summary>
+          <img src="Q.png" alt="Q" width="30" height="30" style="padding: 0 auto">
+     　　 <font size=4>きーぼーdddddddddddddddっdddddddddddっが壊れたんやがどうすればええ？</font>
+         <font size=1 style="color: #DDDDDD; text-align: center;">name:くそこら</font>
+     </summary>
+          <img src="A.png" alt="A" width="40" height="40" style="padding: 0 auto">
+　　　　　<font size=5>「どうすれば」←はい此処使えてるwww</font>
+           <br>
+           <font size=3></font>
+        </details>
+            <!--Q&A-->
+            <details> 
+　　　　　<summary>
+          <img src="Q.png" alt="Q" width="30" height="30" style="padding: 0 auto">
+     　　 <font size=5>弱点は？</font>
+         <font size=1 style="color: #DDDDDD; text-align: center;">name:ミルクティー</font>
+     </summary>
+          <img src="A.png" alt="A" width="40" height="40" style="padding: 0 auto">
+　　　　　<font size=6>漢字</font>
+           <br>
+           <font size=3>いろいろめんどくさいから嫌だ</font>
+            <br>
+        </details>
+            <!--Q&A-->
+        <details> 
+　　　　　<summary>
+             <img src="Q.png" alt="Q" width="30" height="30" style="padding: 0 auto">
+     　　    <font size=5>将来行ってみたい国は？</font>
+             <font size=1 style="color: #DDDDDD; text-align: center;">name:ソラッチ</font>
+          </summary>
+          <img src="A.png" alt="A" width="40" height="40" style="padding: 0 auto">
+　　　　　<font size=6>日本から出なくていいや</font>
+           <br>
+           <font size=3>家でゲームしたい</font>
+        </details>
+            <!--Q&A-->
+            <details> 
+　　　　　<summary>
+          <img src="Q.png" alt="Q" width="30" height="30" style="padding: 0 auto">
+     　　 <font size=5>好きなポケモンは？</font>
+         <font size=1 style="color: #DDDDDD; text-align: center;">name:フィンランド好きの日本人</font>
+     </summary>
+          <img src="A.png" alt="A" width="40" height="40" style="padding: 0 auto">
+　　　　　<font size=6>プリン</font>
+           <br>
+           <font size=3>普通に元プリン使いだから</font>
+            <br>
+            <img src="purin.png" alt="purin" width="300px">
+        </details>
+            <!--Q&A-->
+            <details> 
+　　　　　<summary>
+          <img src="Q.png" alt="Q" width="30" height="30" style="padding: 0 auto">
+     　　 <font size=5>好きなゲームキャラは？</font>
+         <font size=1 style="color: #DDDDDD; text-align: center;">name:フィンランド好きの日本人</font>
+     </summary>
+          <img src="A.png" alt="A" width="40" height="40" style="padding: 0 auto">
+　　　　　<font size=5>ミクさんはゲームじゃないとしたら、みのりちゃん推しですね。</font>
+                <br>
+            <font size=3>ピックアップ全然来ないから石めっちゃ貯まる</font>
+           <br>
+           <img src="minori.jpg" alt="minori" width="400px">
+        </details>
+            <!--Q&A-->
+       <details> 
+　　　　　<summary>
+          <img src="Q.png" alt="Q" width="30" height="30" style="padding: 0 auto">
+     　　 <font size=5>今までﾄｯﾓといった場所で一番楽しい場所はどこ？</font>
+         <font size=1 style="color: #DDDDDD; text-align: center;">name:唐揚げ新潟定食300円</font>
+     </summary>
+          <img src="A.png" alt="A" width="40" height="40" style="padding: 0 auto">
+　　　　　<font size=6></font>
+           <br>
+           <img src="oboetenai.jpeg" width="200px">
+           <font size=3></font>
+        </details>
+            <!--Q&A-->
+            <details> 
+　　　　　<summary>
+          <img src="Q.png" alt="Q" width="30" height="30" style="padding: 0 auto">
+     　　 <font size=5>モノマネしてくれめんす</font>
+         <font size=1 style="color: #DDDDDD; text-align: center;">name:tabako</font>
+     </summary>
+          <img src="A.png" alt="A" width="40" height="40" style="padding: 0 auto">
+            <br>
+          <img src="yaranai.png" alt="iyada">
+　　　　　<font size=6></font>
+           <br>
+           <font size=3></font>
+        </details>
+            <!--Q&A-->
+            <details> 
+　　　　　<summary>
+          <img src="Q.png" alt="Q" width="30" height="30" style="padding: 0 auto">
+     　　 <font size=5>今パッと思いつくことでやりたいこと答えてって</font>
+         <font size=1 style="color: #DDDDDD; text-align: center;">name:タラのかばやき</font>
+     </summary>
+          <img src="A.png" alt="A" width="40" height="40" style="padding: 0 auto">
+　　　　　<font size=6></font>
+           <br>
+           <img src="nemui.png" alt="netai">
+           <font size=3></font>
+        </details>
+            <!--Q&A-->
+       <details> 
+　　　　　<summary>
+          <img src="Q.png" alt="Q" width="30" height="30" style="padding: 0 auto">
+     　　 <font size=5>2000万あったらなにする？</font>
+         <font size=1 style="color: #DDDDDD; text-align: center;">name:前田大然</font>
+     </summary>
+          <img src="A.png" alt="A" width="40" height="40" style="padding: 0 auto">
+　　　　　<font size=6>うどんが食べたいです</font>
+           <br>
+           <img src="udon.gif" width="600px">
+           <font size=3></font>
+        </details>
+            <!--Q&A-->
+       <details> 
+　　　　　<summary>
+          <img src="Q.png" alt="Q" width="30" height="30" style="padding: 0 auto">
+     　　 <font size=5>将来の夢は？</font>
+         <font size=1 style="color: #DDDDDD; text-align: center;">name:奈路谷めろん</font>
+     </summary>
+          <img src="A.png" alt="A" width="40" height="40" style="padding: 0 auto">
+　　　　　<font size=5>ITエンジニアか、ゲームプログラマー</font>
+           <br>
+           <font size=3>まあ小1の頃からプログラミングを始めてたからね。</font>
+        </details>
+            <!--Q&A-->
+       <details> 
+　　　　　<summary>
+          <img src="Q.png" alt="Q" width="30" height="30" style="padding: 0 auto">
+     　　 <font size=5>1年のときにここへ入部した理由は？</font>
+         <font size=1 style="color: #DDDDDD; text-align: center;">name:奈路谷めろん</font>
+     </summary>
+          <img src="A.png" alt="A" width="40" height="40" style="padding: 0 auto">
+　　　　　<font size=6>運動部が嫌だったから。</font>
+           <br>
+           <font size=3>吹部は運動部。</font>
+        </details>
+            <!--Q&A-->
+       <details> 
+　　　　　<summary>
+          <img src="Q.png" alt="Q" width="30" height="30" style="padding: 0 auto">
+     　　 <font size=5>女子が入って正直どう思う？</font>
+         <font size=1 style="color: #DDDDDD; text-align: center;">name:奈路谷めろん</font>
+     </summary>
+          <img src="A.png" alt="A" width="40" height="40" style="padding: 0 auto">
+　　　　　<font size=6>性別とか関係なくね？</font>
+           <br>
+           <font size=3>どうせパソコン部は一人作業だからね。</font>
+        </details>
+            <!--Q&A-->
+       <details> 
+　　　　　<summary>
+          <img src="Q.png" alt="Q" width="30" height="30" style="padding: 0 auto">
+     　　 <font size=5>3年生と1年生になにか一言</font>
+         <font size=1 style="color: #DDDDDD; text-align: center;">name:腹部</font>
+     </summary>
+          <img src="A.png" alt="A" width="40" height="40" style="padding: 0 auto">
+           <font size=6>まあこんなオタクでも生きてるんで</font>
+           <br>
+           <img src="yoro.png">
+           <font size=3></font>
+        </details>
+       <!--
+            <!--Q&A--
+        <details> 
+　　　　　<summary>
+             <img src="Q.png" alt="Q" width="30" height="30" style="padding: 0 auto">
+     　　    <font size=5></font>
+             <font size=1 style="color: #DDDDDD; text-align: center;">name:</font>
+          </summary>
+          <img src="A.png" alt="A" width="40" height="40" style="padding: 0 auto">
+　　　　　<font size=6></font>
+           <br>
+           <font size=3></font>
+        </details>
+            -->
+        <!--buttn-->
+            <a href="./page2.html">緊急終了</a>
+        <div class="btn-wrap" style="text-align: center;">
+            <a href="#gazou">　　</a>
+　　　　  <a href="javascript:popup('エラーが発生しました。errorcode:114514　詳しくはここに電話してください。 0120-810-2929　電話をする方法→下線→画像')" class="btn btn-switch">　　終わる　　　　　　　　　　　　　　　　　　</a> 
+<div id="dialog-overlay">
+</div>
+<div id="dialog-box">
+    <div class="dialog-content">
+        <div id="dialog-message"></div>
+        <a href="#" class="button">Close</a>
+    </div>
+</div>
+<!-- / CODE -->
+            </div>
+    </body>
+</html>

@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>yurayura"pcitc"</title>
+        <link rel="icon" href="favicon.ico">
+        <style>
+            .niziko{
+                border: 1px solid black;
+                background-color: white;
+                border-radius: 15px;
+                whidth: 900px;
+                height: 400px;
+                overflow-y: scroll;
+                overflow-x: hidden;
+                }
+            body{
+                background-color: #FFD;
+                font-family: 'arial','Hiragino Sans','Meiryo',sans-serif;
+                color: #333;
+                }
+            div{
+                width: 1350px;
+                margin: 0 auto 50px;
+                display: flex;
+                justify-content: space-between;
+                }
+            aside nav {
+                border: 3px solid white;
+                background-color: #eee8aa;
+                height: 200px;
+                border-radius: 15px;
+                overflow-y: scroll;
+                overflow-x: hidden;
+                }
+            aside nav ul li{
+                margin: 0 50px;
+                list-style:none;
+                }
+            aside nav ul li a{
+                font-size: 22px;
+                font-weght: bold;
+                color: #8b4513;
+                text-decoration: none;
+                }
+            header nav ul {
+                display: flex;
+                jastify-content: center;
+                border-top: 2px solid #7C5D48;
+                border-bottom: 2px solid #7C5D48;
+                background-color: #FFE;
+                padding: 12px 0px 10px;
+            }
+            header nav ul li{
+                margin: 0 20px;
+                list-style:none;
+                }
+            header nav ul li a{
+                font-size: 22px;
+                font-weght: bold;
+                color: #8b4513;
+                text-decoration: none;
+                }
+            header nav ul li a:hover{
+                text-decoration: underline double;
+                }
+            header{
+                width: 1350px;
+                margin: 0 auto 44px;
+                }
+            footer{
+                border: 1px solid black;
+                width: 1350px;
+                background-color: #222;
+                color: #BBB;
+                text-align: center;
+                }
+            main{
+                flex-basis: 1050px;
+                background-color: #eee8aa;
+                border-radius: 15px;
+                padding: 22px 5px 22px 10px;
+                box-shadow: 0px 0px 4px black;
+                margin: auto 30px;
+                overflow-y: scroll;
+                overflow-x: hidden;
+                height: 500px;
+                }
+            aside{
+                flex-basis: 300px;
+                }
+            .header{
+                width: 1300px;
+                padding: 0px 30px;
+                }
+            .category{
+                font-size: 1.5rem;
+                }
+            .border{
+                border: 2px solid black;
+                border-radius: 10px;
+                margin: 20px 0px;
+                width: 970px;
+                background-color: white;
+                }
+            font{
+                padding: 30px 30px;
+                }
+            ul{
+                text-align: center;
+                }
+        </style>
+    </head>
+    <body>
+            <header>
+                <h1><img class="header"src="header.png"></h1>
+                <nav class="category">
+                    <ul>
+                        <li><a href="https://cuculus-poliocephalus.github.io/home/">ホーム</a></li>
+                        <li><a href="">自己紹介</a></li>
+                        <li><a href="">アカウント</a></li>
+                        <li><a href="">その他</a></li>
+                    </ul>
+                </nav>
+            </header>
+        <div>
+        <main>
+            <div class="border">
+                <iframe src="page.html" id="1" width="900" height="794" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            </div>
+        <div class="border">
+        <h1>コード</h1>
+        <br>
+        <br>
+        <code><pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;/&gt;
+                &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html;charset=utf-8&quot; /&gt;
+        &lt;meta http-equiv=&quot;Content-Language&quot; content=&quot;ja&quot; /&gt;
+        &lt;meta http-equiv=&quot;Content-Script-Type&quot; content=&quot;text/javascript&quot; /&gt;
+        &lt;meta http-equiv=&quot;Content-Style-Type&quot; content=&quot;text/css&quot; /&gt;
+        &lt;meta http-equiv=&quot;imagetoolbar&quot; content=&quot;no&quot; /&gt;
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;/content/lib/global.css&quot; /&gt;
+    　　&lt;title&gt;自己紹介 page1&lt;/title&gt;
+        &lt;script type=&quot;text/javascript&quot; src=&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js&quot;&gt;&lt;/script&gt;
+        &lt;script type=&quot;text/javascript&quot;&gt;
+            $(function(){
+                // クリックで、オーバーレイ、ダイアログボックス、ボタンを非表示
+                $(&#39;a.btn-ok, #dialog-overlay, #dialog-box&#39;).click(function (){
+                    $(&#39;#dialog-overlay, #dialog-box&#39;).hide();
+                    return false;
+                });
+                // ウィンドウがリサイズされたら、ダイアログボックスをセンタリング表示する関数を呼ぶ
+                $(window).resize(function () {
+                    // ダイアログボックスが表示されている場合のみ実行
+                    if (!$(&#39;#dialog-box&#39;).is(&#39;:hidden&#39;)) popup();
+                });
+                // ダイアログをポップアップする関数
+            });
+            function popup(message){
+                // スクリーンの幅と高さを取得
+                var maskHeight = $(document).height();
+                var maskWidth = $(window).width();
+                // 垂直方法および水平方向にセンタリング表示する位置を計算
+//                var dialogTop =  (maskHeight/3) - ($(&#39;#dialog-box&#39;).height());  
+                var dialogTop =  ($(window).height()/2) - ($(&#39;#dialog-box&#39;).height());  
+                var dialogLeft = (maskWidth/2) - ($(&#39;#dialog-box&#39;).width()/2); 
+                // オーバーレイとダイアログボックスを表示
+                $(&#39;#dialog-overlay&#39;).css({height:maskHeight, width:maskWidth}).show();
+                $(&#39;#dialog-box&#39;).css({top:dialogTop, left:dialogLeft}).show();
+                // ダイアログボックス内にメッセージを表示
+                $(&#39;#dialog-message&#39;).html(message);
+            }
+        &lt;/script&gt;
+        &lt;!-- CSS --&gt;
+        &lt;style type=&quot;text/css&quot;&gt;
+            #dialog-overlay {
+                /* set it to fill the whil screen */
+                width:100%;height:100%;
+                /* transparency for different browsers */
+                filter:alpha(opacity=50);
+                -moz-opacity:0.5;
+                -khtml-opacity: 0.5;
+                opacity: 0.5;
+                background:#000;
+                /* make sure it appear behind the dialog box but above everything else */
+                position:absolute;
+                top:0;left:0;
+                z-index:3000;
+                /* hide it by default */
+                display:none;
+            }
+            #dialog-box {
+                /* css3 drop shadow */
+                -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+                -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+                /* css3 border radius */
+                -moz-border-radius: 5px;
+                -webkit-border-radius: 5px;
+                background:#eee;
+                /* styling of the dialog box, i have a fixed dimension for this demo */ 
+                width:328px;
+                /* make sure it has the highest z-index */
+                position:absolute;
+                z-index:5000;
+                /* hide it by default */
+                display:none;
+            }
+            #dialog-box .dialog-content {
+                /* style the content */
+                text-align:left;
+                margin:13px; padding:10px;
+                color:#666;
+                font-family:arial;
+                font-size:11px;
+            }
+            a.button {
+                /* styles for button */
+                margin:10px auto 0 auto; padding: 5px 10px 6px;
+                text-align:center;
+                display: block;
+                width:50px;
+                color: #fff;
+                text-decoration: none;
+                font-weight: bold;
+                line-height: 1;
+                /* button color */
+                background-color: #e33100;
+                /* css3 implementation :) */
+                /* rounded corner */
+                -moz-border-radius: 5px;
+                -webkit-border-radius: 5px;
+                /* drop shadow */
+                -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+                -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+                /* text shaow */
+                text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+                border-bottom: 1px solid rgba(0,0,0,0.25);
+                position: relative;
+                cursor: pointer;
+            }
+            a.button:hover {
+                background-color: #c33100;
+            }
+            /* extra styling */
+            #dialog-box .dialog-content p {
+                font-weight:700;margin:0;
+            }
+            #dialog-box .dialog-content ul {
+                margin:10px 0 10px 20px;
+                padding:0;
+                height:50px;
+            }
+        &lt;/style&gt;
+        &lt;style&gt;
+            body {
+                background: #FFFFCC;
+                background-color: #000;
+                background-position: center;
+                cursor: url(mikuka-soru.png), text;
+                }
+            h1 {
+                margin:  0 auto;
+                border: 1px solid #000;
+                border-radius: 10px;
+                width:700px;
+                height: 70px;
+                background-color: #AAFFFF;
+                padding: 0 auto;
+                text-align: center;
+                }
+            details {
+                cursor: url(mikuka-soru2.png), text;
+                margin: 10px 100px 10px 45px ;
+                border: 3px solid #FFF;
+                border-radius: 10px;
+                width:680px;
+                background-color: gray;
+                padding:10px 30px 10px 30px;
+                color: white;
+                font-weight: bold;
+                }
+            a {
+                cursor: url(mikuka-soru2.png), text;
+                }
+            /*div*/
+            .backcenter {
+background-color: #aff6ff;
+background-image: linear-gradient(315deg, #aff6ff 0%, #73aaff 60%, #663bff 100%);
+}
+            /*H1*/
+            .h1 {
+                /*background*/
+  height: 100px;
+  width: 90%;
+background-color: #000066;
+background-image: linear-gradient(300deg, #000066 20%, #54b6bb 35%, #000033 50%, #000000 100%);
+
+                /*text shadow*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  color: #fffffd;
+  font-size: 50px;
+  text-shadow: 0px 0px 10px rgba(0, 246, 253, 1);
+  font-weight: bold;
+}
+/*buttan*/
+            *,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+.btn,
+a.btn,
+button.btn {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.5rem;
+}
+
+/*背景*/
+.btn-wrap {
+  margin: 20px;
+}
+
+a.btn-switch {
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 100vh;
+  background: #fbfbfc;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(#fbfbfc),
+    to(#dcddde)
+  );
+  background: -webkit-linear-gradient(top, #fbfbfc 0%, #dcddde 100%);
+  background: linear-gradient(180deg, #fbfbfc 0%, #dcddde 100%);
+  -webkit-box-shadow: -1px -5px 6px rgba(0, 0, 0, 0.2), 3px 3px 5px white,
+    0 10px 10px rgba(0, 0, 0, 0.1), inset 0 -4px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: -1px -5px 6px rgba(0, 0, 0, 0.2), 3px 3px 5px white,
+    0 10px 10px rgba(0, 0, 0, 0.1), inset 0 -4px 5px rgba(0, 0, 0, 0.1);
+}
+
+a.btn-switch span {
+  display: inline-block;
+
+  -webkit-transition: all 0.3s;
+
+  transition: all 0.3s;
+}
+
+a.btn-switch:hover {
+  -webkit-box-shadow: -1px -5px 6px rgba(0, 0, 0, 0.2), 3px 3px 5px white,
+    0 10px 10px rgba(0, 0, 0, 0.1), inset 0 -4px 5px rgba(0, 0, 0, 0.1),
+    inset 0 3px 3px rgba(0, 0, 0, 0.18);
+  box-shadow: -1px -5px 6px rgba(0, 0, 0, 0.2), 3px 3px 5px white,
+    0 10px 10px rgba(0, 0, 0, 0.1), inset 0 -4px 5px rgba(0, 0, 0, 0.1),
+    inset 0 3px 3px rgba(0, 0, 0, 0.18);
+}
+
+a.btn-switch:hover span {
+  -webkit-transform: scale(0.96);
+  transform: scale(0.96);
+}
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div class=&quot;backcenter&quot; style=&quot;background-color: #BAD3FF; border: 0px solid white; width:800px; margin: 0 auto; padding:10px 0px 10px 30px; box-shadow: 0px 0px 50px 5px #444; border-radius: 20px; height: 900px; overflow: hidden scroll&quot;&gt;
+        &lt;h1 class=&quot;h1&quot; id=&quot;start&quot;&gt;&lt;font size=7 color=#FFF&gt;自己紹介&lt;/font&gt;&lt;font size=2&gt;　&lt;/font&gt;&lt;a href=&quot;file:///media/removable/USB%20Drive/Program/%E8%87%AA%E5%B7%B1%E7%B4%B9%E4%BB%8B/kansen.html&quot;&gt;&lt;img id=&quot;gazou&quot; src=&quot;miku.jpeg&quot; width=&quot;90px&quot; style=&quot;border: 3px solid black; border-radius: 50px;&quot;&gt;&lt;/a&gt;&lt;/h1&gt;
+            &lt;br&gt;
+            &lt;font size=1 style=&quot;text-align: center;&quot;&gt;　　　　　↑この配色クソダサいwww&lt;/font&gt;
+            &lt;p style=&quot;text-align: center; color: #FFF&quot;&gt;&lt;font size=5&gt;&lt;b&gt;Q&amp;A方式で答えて行くｿﾞ&lt;/b&gt;&lt;/font&gt;&lt;/p&gt;
+       &lt;!--Q&amp;A--&gt;
+        &lt;details&gt;
+            &lt;summary&gt;
+            &lt;img src=&quot;Q.png&quot; alt=&quot;Q&quot; width=&quot;30&quot; height=&quot;30&quot; style=&quot;padding: 0 auto&quot;&gt;
+                &lt;font size=5&gt;　名前は？&lt;/font&gt;
+                &lt;font size=1 style=&quot;color: #DDDDDD; text-align: center;&quot;&gt;name:ワイ&lt;/font&gt;
+            &lt;/summary&gt;
+            &lt;a&gt;&lt;img src=&quot;A.png&quot; alt=&quot;A&quot; width=&quot;40&quot; height=&quot;40&quot; style=&quot;padding: 0 auto&quot;&gt;&lt;/a&gt;
+            &lt;!--此処にA--&gt;
+            &lt;font size=6&gt;&lt;ruby&gt;&lt;rb&gt;山内結仁&lt;rt&gt;やまうちゆうと&lt;/ruby&gt;&lt;/font&gt;
+            &lt;font size=6&gt;です。&lt;/font&gt;
+            &lt;br&gt;
+            &lt;font size=1&gt;結仁っていう漢字が変換で出てこないので、&lt;em&gt;ケツジン&lt;/em&gt;って打って変換しています。&lt;/font&gt;
+        &lt;/details&gt;
+      &lt;!--Q&amp;A--&gt;
+       &lt;details&gt; 
+　　　　　&lt;summary&gt;
+          &lt;img src=&quot;Q.png&quot; alt=&quot;Q&quot; width=&quot;30&quot; height=&quot;30&quot; style=&quot;padding: 0 auto&quot;&gt;
+         &lt;font size=5&gt;　クラスは?&lt;/font&gt;
+     &lt;font size=1 style=&quot;color: #DDDDDD; text-align: center;&quot;&gt;name:ワイ&lt;/font&gt;
+     &lt;/summary&gt;
+           &lt;img src=&quot;A.png&quot; alt=&quot;A&quot; width=&quot;40&quot; height=&quot;40&quot; style=&quot;padding: 0 auto&quot;&gt;
+           &lt;font size=6&quot;&gt;　2年1組31番だす。&lt;/font&gt;
+           &lt;br&gt;
+           &lt;font size=3&gt;1組率がめっちゃ高いです。小1,小2,小5,小6,中1,そして今年も1組なんだよな&lt;/font&gt;
+           &lt;br&gt;
+           &lt;font size=1&gt;ちなみに小3は4組、小4は3組。&lt;/font&gt;
+       &lt;/details&gt;
+            &lt;!--Q&amp;A--&gt;
+        &lt;details&gt; 
+　　　　　&lt;summary&gt;
+             &lt;img src=&quot;Q.png&quot; alt=&quot;Q&quot; width=&quot;30&quot; height=&quot;30&quot; style=&quot;padding: 0 auto&quot;&gt;
+     　　    &lt;font size=5&gt;性別は？&lt;/font&gt;
+             &lt;font size=1 style=&quot;color: #DDDDDD; text-align: center;&quot;&gt;name:ソラッチ&lt;/font&gt;
+          &lt;/summary&gt;
+          &lt;img src=&quot;A.png&quot; alt=&quot;A&quot; width=&quot;40&quot; height=&quot;40&quot; style=&quot;padding: 0 auto&quot;&gt;
+　　　　　&lt;font size=6&gt;どっからどう見ても...&lt;/font&gt;
+           &lt;br&gt;
+            &lt;img src=&quot;otoko.png&quot; alt=&quot;otokodaro&quot;&gt;
+           &lt;font size=3&gt;&lt;/font&gt;
+        &lt;/details&gt;
+            &lt;!--Q&amp;A--&gt;
+       &lt;details&gt; 
+　　　　　&lt;summary&gt;
+          &lt;img src=&quot;Q.png&quot; alt=&quot;Q&quot; width=&quot;30&quot; height=&quot;30&quot; style=&quot;padding: 0 auto&quot;&gt;
+     　　 &lt;font size=5&gt;趣味は？&lt;/font&gt;
+         &lt;font size=1 style=&quot;color: #DDDDDD; text-align: center;&quot;&gt;name:ゆうき&lt;/font&gt;
+     &lt;/summary&gt;
+          &lt;img src=&quot;A.png&quot; alt=&quot;A&quot; width=&quot;40&quot; height=&quot;40&quot; style=&quot;padding: 0 auto&quot;&gt;
+　　　　　&lt;font size=6&gt;アニメ・ボカロ・ゲームの3つ&lt;/font&gt;
+           &lt;br&gt;
+           &lt;font size=3&gt;どれが好きかは後々いうぜ。&lt;/font&gt;
+        &lt;/details&gt;
+            &lt;!--Q&amp;A--&gt;
+        &lt;details&gt; 
+　　　　　&lt;summary&gt;
+             &lt;img src=&quot;Q.png&quot; alt=&quot;Q&quot; width=&quot;30&quot; height=&quot;30&quot; style=&quot;padding: 0 auto&quot;&gt;
+     　　    &lt;font size=5&gt;特技は？&lt;/font&gt;
+             &lt;font size=1 style=&quot;color: #DDDDDD; text-align: center;&quot;&gt;name:アンチマンガン&lt;/font&gt;
+          &lt;/summary&gt;
+          &lt;img src=&quot;A.png&quot; alt=&quot;A&quot; width=&quot;40&quot; height=&quot;40&quot; style=&quot;padding: 0 auto&quot;&gt;
+　　　　　&lt;font size=5&gt;プログラミングとクソコラづくり&lt;/font&gt;
+           &lt;br&gt;
+            &lt;font size=1&gt;　　　　　吉澤翼(当時 10歳)&lt;/font&gt;
+            &lt;br&gt;
+            &lt;img src=&quot;tubasa.png&quot; alt=&quot;kusokora&quot; width=&quot;600px&quot;&gt;
+           &lt;font size=3&gt;&lt;/font&gt;
+        &lt;/details&gt;
+        &lt;!--Q&amp;A--&gt;
+       &lt;details&gt; 
+　　　　　&lt;summary&gt;
+          &lt;img src=&quot;Q.png&quot; alt=&quot;Q&quot; width=&quot;30&quot; height=&quot;30&quot; style=&quot;padding: 0 auto&quot;&gt;
+         &lt;font size=5&gt;　好きなゲームは？&lt;/font&gt;
+    　　  &lt;font size=1 style=&quot;color: #DDDDDD; text-align: center;&quot;&gt;name:腹部&lt;/font&gt;
+     &lt;/summary&gt;
+          &lt;img src=&quot;A.png&quot; alt=&quot;A&quot; width=&quot;40&quot; height=&quot;40&quot; style=&quot;padding: 0 auto&quot;&gt;
+　　　　　&lt;font size=6&gt;プロセカとスマブラやね。&lt;/font&gt;　
+           &lt;img src=&quot;puse.jpeg&quot; alt=&quot;puroseka&quot;&gt;
+           &lt;img src=&quot;sumabura.jpeg&quot; alt=&quot;sumabura&quot;&gt;
+        &lt;/details&gt;
+        &lt;!--Q&amp;A--&gt;
+       &lt;details&gt; 
+　　　　　&lt;summary&gt;
+          &lt;img src=&quot;Q.png&quot; alt=&quot;Q&quot; width=&quot;30&quot; height=&quot;30&quot; style=&quot;padding: 0 auto&quot;&gt;
+     　　 &lt;font size=5&gt;好きな曲は？&lt;/font&gt;
+         &lt;font size=1 style=&quot;color: #DDDDDD; text-align: center;&quot;&gt;name:腹部&lt;/font&gt;
+     &lt;/summary&gt;
+          &lt;img src=&quot;A.png&quot; alt=&quot;A&quot; width=&quot;40&quot; height=&quot;40&quot; style=&quot;padding: 0 auto&quot;&gt;
+　　　　　&lt;font size=6&gt;ボカロ全般好き&lt;/font&gt;
+           &lt;br&gt;
+           &lt;font size=3&gt;最近はビバハピ、SAN値直葬、初音ミクの暴走、BLUE BACKとかを聞いてる。&lt;/font&gt;
+           &lt;br&gt;
+           &lt;font size=1&gt;わかってると思うけどミクさん推しです。&lt;/font&gt;
+           &lt;br&gt;
+           &lt;a href=&quot;https://www.youtube.com/watch?v=WiUjG9fF3zw&quot;&gt;&lt;img src=&quot;viva.jpg&quot; alt=&quot;vivahapi&quot; width=&quot;300px&quot;&gt;&lt;/a&gt;
+           &lt;a href=&quot;https://www.youtube.com/watch?v=l36yKc43_9o&quot;&gt;&lt;img src=&quot;sanchi.png&quot; alt=&quot;sanchi&quot; width=&quot;300px&quot;&gt;&lt;/a&gt;
+           &lt;br&gt;
+           &lt;a href=&quot;https://x.gd/kc8rc&quot;&gt;&lt;img src=&quot;bousou.jpg&quot; alt=&quot;bousou&quot; width=&quot;300px&quot;&gt;&lt;/a&gt;
+           &lt;a href=&quot;https://x.gd/Dlxbg&quot;&gt;&lt;img src=&quot;BLUE.jpg&quot; alt=&quot;blue&quot; width=&quot;300px&quot;&gt;&lt;/a&gt;
+        &lt;/details&gt;
+            &lt;!--Q&amp;A--&gt;
+       &lt;details&gt; 
+　　　　　&lt;summary&gt;
+          &lt;img src=&quot;Q.png&quot; alt=&quot;Q&quot; width=&quot;30&quot; height=&quot;30&quot; style=&quot;padding: 0 auto&quot;&gt;
+     　　 &lt;font size=5&gt;好きなアニメは？&lt;/font&gt;
+         &lt;font size=1 style=&quot;color: #DDDDDD; text-align: center;&quot;&gt;name:奈路谷めろん&lt;/font&gt;
+     &lt;/summary&gt;
+          &lt;img src=&quot;A.png&quot; alt=&quot;A&quot; width=&quot;40&quot; height=&quot;40&quot; style=&quot;padding: 0 auto&quot;&gt;
+　　　　　&lt;font size=5&gt;「ハッピーシュガーライフ」、「がっこうぐらし!」、「魔法少女サイト」、「ロウきゅーぶ！」、「ステラのまほう」、「のんのんびより」、「らき☆すた」、「男女の友情は成立する? (いや、 しないっ!!)」とかかな。&lt;/font&gt;
+           &lt;br&gt;
+           &lt;font size=3&gt;ステラのまほうの主人公が入部する部活は&lt;/font&gt;
+           &lt;br&gt;
+           &lt;font size=3&gt;S(死んだ魚の目)N(日照不足)S(シャトルラン)部&lt;/font&gt;
+           &lt;br&gt;
+           &lt;img src=&quot;satou.jpeg&quot; alt=&quot;hapisyuga&quot; width=&quot;200px&quot;&gt;
+           &lt;img src=&quot;gakkou.jpg&quot; alt=&quot;gakkougurasi&quot; width=&quot;200px&quot;&gt;
+           &lt;img src=&quot;mahousyoujo.jpg&quot; alt=&quot;mahousyoujo&quot; width=&quot;200px&quot;&gt;
+           &lt;br&gt;
+           &lt;img src=&quot;roukyuu.webp&quot; alt=&quot;roukyuu&quot; width=&quot;200px&quot;&gt;
+           &lt;img src=&quot;sutera.png&quot; alt=&quot;suteranomahou&quot; width=&quot;200px&quot;&gt;
+           &lt;img src=&quot;nonnon.jpeg&quot; alt=&quot;nonnonbiyori&quot; width=&quot;200px&quot;&gt;
+           &lt;br&gt;
+           &lt;img src=&quot;rakisuta.jpeg&quot; alt=&quot;rakisuta&quot; width=&quot;200px&quot;&gt;
+           &lt;img src=&quot;danjoru.webp&quot; alt=&quot;danjoru&quot; width=&quot;200px&quot;&gt;
+           &lt;img src=&quot;rikoriko.jpeg&quot; alt=&quot;rikoriko&quot; width=&quot;200px&quot;&gt;
+        &lt;/details&gt;
+            &lt;!--Q&amp;A--&gt;
+       &lt;details&gt; 
+　　　　　&lt;summary&gt;
+          &lt;img src=&quot;Q.png&quot; alt=&quot;Q&quot; width=&quot;30&quot; height=&quot;30&quot; style=&quot;padding: 0 auto&quot;&gt;
+     　　 &lt;font size=5&gt;好きなyoutuberは？&lt;/font&gt;
+         &lt;font size=1 style=&quot;color: #DDDDDD; text-align: center;&quot;&gt;name:奈路谷めろん&lt;/font&gt;
+     &lt;/summary&gt;
+          &lt;img src=&quot;A.png&quot; alt=&quot;A&quot; width=&quot;40&quot; height=&quot;40&quot; style=&quot;padding: 0 auto&quot;&gt;
+　　　　　&lt;font size=5&gt;最近は、プロセカ公式チャンネルとか、ハヤトの野望とか、2chまとめを見てるで。&lt;/font&gt;
+           &lt;br&gt;
+           &lt;font size=3&gt;2chまとめは「【2ch面白スレ解説】グッバイイッチ」を見てるで。&lt;/font&gt;
+           &lt;br&gt;
+           &lt;a href=&quot;https://www.youtube.com/channel/UCdMGYXL38w6htx6Yf9YJa-w&quot;&gt;&lt;img src=&quot;puroseka.jpg&quot; alt=&quot;purosekakousiki&quot; width=&quot;200px&quot;&gt;&lt;/a&gt;
+           &lt;a href=&quot;https://x.gd/wF4gV&quot;&gt;&lt;img src=&quot;hayayabo.jpg&quot; alt=&quot;hayayabo&quot; width=&quot;200px&quot;&gt;&lt;/a&gt;
+           &lt;a href=&quot;https://x.gd/ibAfB8&quot;&gt;&lt;img src=&quot;itti.jpg&quot; alt=&quot;gubbaiitti&quot; width=&quot;200px&quot;&gt;&lt;/a&gt;
+        &lt;/details&gt;
+            &lt;!--Q&amp;A--&gt;
+       &lt;details&gt; 
+　　　　　&lt;summary&gt;
+          &lt;img src=&quot;Q.png&quot; alt=&quot;Q&quot; width=&quot;30&quot; height=&quot;30&quot; style=&quot;padding: 0 auto&quot;&gt;
+     　　 &lt;font size=5&gt;好きな漫画教えてクレメンス&lt;/font&gt;
+         &lt;font size=1 style=&quot;color: #DDDDDD; text-align: center;&quot;&gt;name:肋骨折れた&lt;/font&gt;
+     &lt;/summary&gt;
+          &lt;img src=&quot;A.png&quot; alt=&quot;A&quot; width=&quot;40&quot; height=&quot;40&quot; style=&quot;padding: 0 auto&quot;&gt;
+　　　　　&lt;font size=6&gt;金色のガッシュ！！&lt;/font&gt;
+           &lt;br&gt;
+           &lt;font size=3&gt;24年前の漫画。最近2が出て嬉い。あと肋骨ダイジョブそ？&lt;/font&gt;
+           &lt;img src=&quot;gasshu1.jpg&quot; alt=&quot;gassyu&quot; width=&quot;300px&quot;&gt;
+           &lt;img src=&quot;gasshu2.jpg&quot; alt=&quot;gassyu&quot; width=&quot;300px&quot;&gt;
+        &lt;/details&gt;
+            &lt;!--Q&amp;A--&gt;
+        &lt;details&gt; 
+　　　　　&lt;summary&gt;
+             &lt;img src=&quot;Q.png&quot; alt=&quot;Q&quot; width=&quot;30&quot; height=&quot;30&quot; style=&quot;padding: 0 auto&quot;&gt;
+     　　    &lt;font size=5&gt;好きな鉱石は？&lt;/font&gt;
+             &lt;font size=1 style=&quot;color: #DDDDDD; text-align: center;&quot;&gt;name:匿名カバ&lt;/font&gt;
+          &lt;/summary&gt;
+          &lt;img src=&quot;A.png&quot; alt=&quot;A&quot; width=&quot;40&quot; height=&quot;40&quot; style=&quot;padding: 0 auto&quot;&gt;
+　　　　　&lt;font size=6&gt;よくわからん&lt;/font&gt;
+           &lt;br&gt;
+           &lt;font size=3&gt;興味ない&lt;/font&gt;
+        &lt;/details&gt;
+            &lt;!--Q&amp;A--&gt;
+       &lt;details&gt; 
+　　　　　&lt;summary&gt;
+          &lt;img src=&quot;Q.png&quot; alt=&quot;Q&quot; width=&quot;30&quot; height=&quot;30&quot; style=&quot;padding: 0 auto&quot;&gt;
+     　　 &lt;font size=4&gt;きーぼーdddddddddddddddっdddddddddddっが壊れたんやがどうすればええ？&lt;/font&gt;
+         &lt;font size=1 style=&quot;color: #DDDDDD; text-align: center;&quot;&gt;name:くそこら&lt;/font&gt;
+     &lt;/summary&gt;
+          &lt;img src=&quot;A.png&quot; alt=&quot;A&quot; width=&quot;40&quot; height=&quot;40&quot; style=&quot;padding: 0 auto&quot;&gt;
+　　　　　&lt;font size=5&gt;「どうすれば」←はい此処使えてるwww&lt;/font&gt;
+           &lt;br&gt;
+           &lt;font size=3&gt;&lt;/font&gt;
+        &lt;/details&gt;
+            &lt;!--Q&amp;A--&gt;
+            &lt;details&gt; 
+　　　　　&lt;summary&gt;
+          &lt;img src=&quot;Q.png&quot; alt=&quot;Q&quot; width=&quot;30&quot; height=&quot;30&quot; style=&quot;padding: 0 auto&quot;&gt;
+     　　 &lt;font size=5&gt;弱点は？&lt;/font&gt;
+         &lt;font size=1 style=&quot;color: #DDDDDD; text-align: center;&quot;&gt;name:ミルクティー&lt;/font&gt;
+     &lt;/summary&gt;
+          &lt;img src=&quot;A.png&quot; alt=&quot;A&quot; width=&quot;40&quot; height=&quot;40&quot; style=&quot;padding: 0 auto&quot;&gt;
+　　　　　&lt;font size=6&gt;漢字&lt;/font&gt;
+           &lt;br&gt;
+           &lt;font size=3&gt;いろいろめんどくさいから嫌だ&lt;/font&gt;
+            &lt;br&gt;
+        &lt;/details&gt;
+            &lt;!--Q&amp;A--&gt;
+        &lt;details&gt; 
+　　　　　&lt;summary&gt;
+             &lt;img src=&quot;Q.png&quot; alt=&quot;Q&quot; width=&quot;30&quot; height=&quot;30&quot; style=&quot;padding: 0 auto&quot;&gt;
+     　　    &lt;font size=5&gt;将来行ってみたい国は？&lt;/font&gt;
+             &lt;font size=1 style=&quot;color: #DDDDDD; text-align: center;&quot;&gt;name:ソラッチ&lt;/font&gt;
+          &lt;/summary&gt;
+          &lt;img src=&quot;A.png&quot; alt=&quot;A&quot; width=&quot;40&quot; height=&quot;40&quot; style=&quot;padding: 0 auto&quot;&gt;
+　　　　　&lt;font size=6&gt;日本から出なくていいや&lt;/font&gt;
+           &lt;br&gt;
+           &lt;font size=3&gt;家でゲームしたい&lt;/font&gt;
+        &lt;/details&gt;
+            &lt;!--Q&amp;A--&gt;
+            &lt;details&gt; 
+　　　　　&lt;summary&gt;
+          &lt;img src=&quot;Q.png&quot; alt=&quot;Q&quot; width=&quot;30&quot; height=&quot;30&quot; style=&quot;padding: 0 auto&quot;&gt;
+     　　 &lt;font size=5&gt;好きなポケモンは？&lt;/font&gt;
+         &lt;font size=1 style=&quot;color: #DDDDDD; text-align: center;&quot;&gt;name:フィンランド好きの日本人&lt;/font&gt;
+     &lt;/summary&gt;
+          &lt;img src=&quot;A.png&quot; alt=&quot;A&quot; width=&quot;40&quot; height=&quot;40&quot; style=&quot;padding: 0 auto&quot;&gt;
+　　　　　&lt;font size=6&gt;プリン&lt;/font&gt;
+           &lt;br&gt;
+           &lt;font size=3&gt;普通に元プリン使いだから&lt;/font&gt;
+            &lt;br&gt;
+            &lt;img src=&quot;purin.png&quot; alt=&quot;purin&quot; width=&quot;300px&quot;&gt;
+        &lt;/details&gt;
+            &lt;!--Q&amp;A--&gt;
+            &lt;details&gt; 
+　　　　　&lt;summary&gt;
+          &lt;img src=&quot;Q.png&quot; alt=&quot;Q&quot; width=&quot;30&quot; height=&quot;30&quot; style=&quot;padding: 0 auto&quot;&gt;
+     　　 &lt;font size=5&gt;好きなゲームキャラは？&lt;/font&gt;
+         &lt;font size=1 style=&quot;color: #DDDDDD; text-align: center;&quot;&gt;name:フィンランド好きの日本人&lt;/font&gt;
+     &lt;/summary&gt;
+          &lt;img src=&quot;A.png&quot; alt=&quot;A&quot; width=&quot;40&quot; height=&quot;40&quot; style=&quot;padding: 0 auto&quot;&gt;
+　　　　　&lt;font size=5&gt;ミクさんはゲームじゃないとしたら、みのりちゃん推しですね。&lt;/font&gt;
+                &lt;br&gt;
+            &lt;font size=3&gt;ピックアップ全然来ないから石めっちゃ貯まる&lt;/font&gt;
+           &lt;br&gt;
+           &lt;img src=&quot;minori.jpg&quot; alt=&quot;minori&quot; width=&quot;400px&quot;&gt;
+        &lt;/details&gt;
+            &lt;!--Q&amp;A--&gt;
+       &lt;details&gt; 
+　　　　　&lt;summary&gt;
+          &lt;img src=&quot;Q.png&quot; alt=&quot;Q&quot; width=&quot;30&quot; height=&quot;30&quot; style=&quot;padding: 0 auto&quot;&gt;
+     　　 &lt;font size=5&gt;今までﾄｯﾓといった場所で一番楽しい場所はどこ？&lt;/font&gt;
+         &lt;font size=1 style=&quot;color: #DDDDDD; text-align: center;&quot;&gt;name:唐揚げ新潟定食300円&lt;/font&gt;
+     &lt;/summary&gt;
+          &lt;img src=&quot;A.png&quot; alt=&quot;A&quot; width=&quot;40&quot; height=&quot;40&quot; style=&quot;padding: 0 auto&quot;&gt;
+　　　　　&lt;font size=6&gt;&lt;/font&gt;
+           &lt;br&gt;
+           &lt;img src=&quot;oboetenai.jpeg&quot; width=&quot;200px&quot;&gt;
+           &lt;font size=3&gt;&lt;/font&gt;
+        &lt;/details&gt;
+            &lt;!--Q&amp;A--&gt;
+            &lt;details&gt; 
+　　　　　&lt;summary&gt;
+          &lt;img src=&quot;Q.png&quot; alt=&quot;Q&quot; width=&quot;30&quot; height=&quot;30&quot; style=&quot;padding: 0 auto&quot;&gt;
+     　　 &lt;font size=5&gt;モノマネしてくれめんす&lt;/font&gt;
+         &lt;font size=1 style=&quot;color: #DDDDDD; text-align: center;&quot;&gt;name:tabako&lt;/font&gt;
+     &lt;/summary&gt;
+          &lt;img src=&quot;A.png&quot; alt=&quot;A&quot; width=&quot;40&quot; height=&quot;40&quot; style=&quot;padding: 0 auto&quot;&gt;
+            &lt;br&gt;
+          &lt;img src=&quot;yaranai.png&quot; alt=&quot;iyada&quot;&gt;
+　　　　　&lt;font size=6&gt;&lt;/font&gt;
+           &lt;br&gt;
+           &lt;font size=3&gt;&lt;/font&gt;
+        &lt;/details&gt;
+            &lt;!--Q&amp;A--&gt;
+            &lt;details&gt; 
+　　　　　&lt;summary&gt;
+          &lt;img src=&quot;Q.png&quot; alt=&quot;Q&quot; width=&quot;30&quot; height=&quot;30&quot; style=&quot;padding: 0 auto&quot;&gt;
+     　　 &lt;font size=5&gt;今パッと思いつくことでやりたいこと答えてって&lt;/font&gt;
+         &lt;font size=1 style=&quot;color: #DDDDDD; text-align: center;&quot;&gt;name:タラのかばやき&lt;/font&gt;
+     &lt;/summary&gt;
+          &lt;img src=&quot;A.png&quot; alt=&quot;A&quot; width=&quot;40&quot; height=&quot;40&quot; style=&quot;padding: 0 auto&quot;&gt;
+　　　　　&lt;font size=6&gt;&lt;/font&gt;
+           &lt;br&gt;
+           &lt;img src=&quot;nemui.png&quot; alt=&quot;netai&quot;&gt;
+           &lt;font size=3&gt;&lt;/font&gt;
+        &lt;/details&gt;
+            &lt;!--Q&amp;A--&gt;
+       &lt;details&gt; 
+　　　　　&lt;summary&gt;
+          &lt;img src=&quot;Q.png&quot; alt=&quot;Q&quot; width=&quot;30&quot; height=&quot;30&quot; style=&quot;padding: 0 auto&quot;&gt;
+     　　 &lt;font size=5&gt;2000万あったらなにする？&lt;/font&gt;
+         &lt;font size=1 style=&quot;color: #DDDDDD; text-align: center;&quot;&gt;name:前田大然&lt;/font&gt;
+     &lt;/summary&gt;
+          &lt;img src=&quot;A.png&quot; alt=&quot;A&quot; width=&quot;40&quot; height=&quot;40&quot; style=&quot;padding: 0 auto&quot;&gt;
+　　　　　&lt;font size=6&gt;うどんが食べたいです&lt;/font&gt;
+           &lt;br&gt;
+           &lt;img src=&quot;udon.gif&quot; width=&quot;600px&quot;&gt;
+           &lt;font size=3&gt;&lt;/font&gt;
+        &lt;/details&gt;
+            &lt;!--Q&amp;A--&gt;
+       &lt;details&gt; 
+　　　　　&lt;summary&gt;
+          &lt;img src=&quot;Q.png&quot; alt=&quot;Q&quot; width=&quot;30&quot; height=&quot;30&quot; style=&quot;padding: 0 auto&quot;&gt;
+     　　 &lt;font size=5&gt;将来の夢は？&lt;/font&gt;
+         &lt;font size=1 style=&quot;color: #DDDDDD; text-align: center;&quot;&gt;name:奈路谷めろん&lt;/font&gt;
+     &lt;/summary&gt;
+          &lt;img src=&quot;A.png&quot; alt=&quot;A&quot; width=&quot;40&quot; height=&quot;40&quot; style=&quot;padding: 0 auto&quot;&gt;
+　　　　　&lt;font size=5&gt;ITエンジニアか、ゲームプログラマー&lt;/font&gt;
+           &lt;br&gt;
+           &lt;font size=3&gt;まあ小1の頃からプログラミングを始めてたからね。&lt;/font&gt;
+        &lt;/details&gt;
+            &lt;!--Q&amp;A--&gt;
+       &lt;details&gt; 
+　　　　　&lt;summary&gt;
+          &lt;img src=&quot;Q.png&quot; alt=&quot;Q&quot; width=&quot;30&quot; height=&quot;30&quot; style=&quot;padding: 0 auto&quot;&gt;
+     　　 &lt;font size=5&gt;1年のときにここへ入部した理由は？&lt;/font&gt;
+         &lt;font size=1 style=&quot;color: #DDDDDD; text-align: center;&quot;&gt;name:奈路谷めろん&lt;/font&gt;
+     &lt;/summary&gt;
+          &lt;img src=&quot;A.png&quot; alt=&quot;A&quot; width=&quot;40&quot; height=&quot;40&quot; style=&quot;padding: 0 auto&quot;&gt;
+　　　　　&lt;font size=6&gt;運動部が嫌だったから。&lt;/font&gt;
+           &lt;br&gt;
+           &lt;font size=3&gt;吹部は運動部。&lt;/font&gt;
+        &lt;/details&gt;
+            &lt;!--Q&amp;A--&gt;
+       &lt;details&gt; 
+　　　　　&lt;summary&gt;
+          &lt;img src=&quot;Q.png&quot; alt=&quot;Q&quot; width=&quot;30&quot; height=&quot;30&quot; style=&quot;padding: 0 auto&quot;&gt;
+     　　 &lt;font size=5&gt;女子が入って正直どう思う？&lt;/font&gt;
+         &lt;font size=1 style=&quot;color: #DDDDDD; text-align: center;&quot;&gt;name:奈路谷めろん&lt;/font&gt;
+     &lt;/summary&gt;
+          &lt;img src=&quot;A.png&quot; alt=&quot;A&quot; width=&quot;40&quot; height=&quot;40&quot; style=&quot;padding: 0 auto&quot;&gt;
+　　　　　&lt;font size=6&gt;性別とか関係なくね？&lt;/font&gt;
+           &lt;br&gt;
+           &lt;font size=3&gt;どうせパソコン部は一人作業だからね。&lt;/font&gt;
+        &lt;/details&gt;
+            &lt;!--Q&amp;A--&gt;
+       &lt;details&gt; 
+　　　　　&lt;summary&gt;
+          &lt;img src=&quot;Q.png&quot; alt=&quot;Q&quot; width=&quot;30&quot; height=&quot;30&quot; style=&quot;padding: 0 auto&quot;&gt;
+     　　 &lt;font size=5&gt;3年生と1年生になにか一言&lt;/font&gt;
+         &lt;font size=1 style=&quot;color: #DDDDDD; text-align: center;&quot;&gt;name:腹部&lt;/font&gt;
+     &lt;/summary&gt;
+          &lt;img src=&quot;A.png&quot; alt=&quot;A&quot; width=&quot;40&quot; height=&quot;40&quot; style=&quot;padding: 0 auto&quot;&gt;
+           &lt;font size=6&gt;まあこんなオタクでも生きてるんで&lt;/font&gt;
+           &lt;br&gt;
+           &lt;img src=&quot;yoro.png&quot;&gt;
+           &lt;font size=3&gt;&lt;/font&gt;
+        &lt;/details&gt;
+       &lt;!--
+            &lt;!--Q&amp;A--
+        &lt;details&gt; 
+　　　　　&lt;summary&gt;
+             &lt;img src=&quot;Q.png&quot; alt=&quot;Q&quot; width=&quot;30&quot; height=&quot;30&quot; style=&quot;padding: 0 auto&quot;&gt;
+     　　    &lt;font size=5&gt;&lt;/font&gt;
+             &lt;font size=1 style=&quot;color: #DDDDDD; text-align: center;&quot;&gt;name:&lt;/font&gt;
+          &lt;/summary&gt;
+          &lt;img src=&quot;A.png&quot; alt=&quot;A&quot; width=&quot;40&quot; height=&quot;40&quot; style=&quot;padding: 0 auto&quot;&gt;
+　　　　　&lt;font size=6&gt;&lt;/font&gt;
+           &lt;br&gt;
+           &lt;font size=3&gt;&lt;/font&gt;
+        &lt;/details&gt;
+            --&gt;
+        &lt;!--buttn--&gt;
+            &lt;a href=&quot;./page2.html&quot;&gt;緊急終了&lt;/a&gt;
+        &lt;div class=&quot;btn-wrap&quot; style=&quot;text-align: center;&quot;&gt;
+            &lt;a href=&quot;#gazou&quot;&gt;　　&lt;/a&gt;
+　　　　  &lt;a href=&quot;javascript:popup(&#39;エラーが発生しました。errorcode:114514　詳しくはここに電話してください。 0120-810-2929　電話をする方法→下線→画像&#39;)&quot; class=&quot;btn btn-switch&quot;&gt;　　終わる　　　　　　　　　　　　　　　　　　&lt;/a&gt; 
+&lt;div id=&quot;dialog-overlay&quot;&gt;
+&lt;/div&gt;
+&lt;div id=&quot;dialog-box&quot;&gt;
+    &lt;div class=&quot;dialog-content&quot;&gt;
+        &lt;div id=&quot;dialog-message&quot;&gt;&lt;/div&gt;
+        &lt;a href=&quot;#&quot; class=&quot;button&quot;&gt;Close&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- / CODE --&gt;
+            &lt;/div&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</pre></code>
+            </div>
+        </main>
+        <aside>
+            <nav>
+            <h3 style="text-align: center;">かてごりー</h3>
+            <ul>
+                <li><a href="#1">自己紹介2</a></li>
+            </ul>
+            </nav>
+        </aside>
+        </div>
+        <footer>
+            <p>@3YOD PCITC</p>
+        </footer>
+    </body>
+</html>
